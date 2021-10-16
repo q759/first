@@ -1,0 +1,37 @@
+#include<iostream>
+#include<string>
+using namespace std;
+struct Hero {
+	string name;
+	int age;
+	string sex;
+};
+void bubbeSort(struct Hero heroArray[], int len) {
+	for (int i = 0; i < len - 1; i++) {
+		for (int j = 0; j < len - i - 1; j++) {
+			if (heroArray[j].age > heroArray[j + 1].age) {
+				struct Hero temp = heroArray[j];
+				heroArray[j] = heroArray[j + 1];
+				heroArray[j + 1] = temp;
+			}
+		}
+	}
+}
+void printArray(struct Hero heroArray[], int len) {
+	for (int i = 0; i< len; i++) {
+		cout << "姓名：" << heroArray[i].name << " " << "年龄：" << heroArray[i].age << " " << "性别：" << heroArray[i].sex << endl;
+	}
+}
+int main() {
+	struct Hero heroArray[5] = {
+		{"A",18,"男"},
+		{"B",17,"男"},
+		{"C",20,"女"},
+		{"D",10,"女"},
+		{"T",23,"男"},
+	};
+	int len = sizeof(heroArray) / sizeof(heroArray[0]);
+	bubbeSort(heroArray, len);
+	printArray(heroArray, len);
+	system("pause");
+}
